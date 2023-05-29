@@ -11,9 +11,13 @@ import java.util.List;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "idEtudiant")
-@Data@AllArgsConstructor@NoArgsConstructor@ToString
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Etudiant extends Utilisateur {
 
+    @Column(unique = true,nullable = true)
     private String cne;
 
     private Date dateNaissance;

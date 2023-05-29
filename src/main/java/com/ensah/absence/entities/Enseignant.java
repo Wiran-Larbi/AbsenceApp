@@ -10,11 +10,9 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "idEnseighant")
+@PrimaryKeyJoinColumn(name = "idEnseignant")
 @AllArgsConstructor@NoArgsConstructor @Data @ToString
 public class Enseignant extends Utilisateur {
-
-
 	
 	private String specialite;
 

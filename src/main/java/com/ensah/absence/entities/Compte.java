@@ -8,8 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
-
+import java.util.List;
 
 
 @Entity
@@ -51,4 +50,10 @@ public class Compte {
     @ManyToOne
     @JoinColumn(name = "idUtilisateur")
     private Utilisateur proprietaire;
+
+    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL,targetEntity = Notification.class)
+    private List<Notification> notifications;
+
+    @OneToMany(mappedBy = "compte", cascade = CascadeType.ALL, targetEntity = JournalisationEvenements.class)
+    private List<JournalisationEvenements> journalisationEvenements;
 }
