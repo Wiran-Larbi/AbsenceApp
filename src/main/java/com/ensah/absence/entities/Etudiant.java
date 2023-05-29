@@ -22,8 +22,8 @@ public class Etudiant extends Utilisateur {
 
     private Date dateNaissance;
 
-    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL, targetEntity = InscriptionAnnuelle.class)
-    private List<InscriptionAnnuelle> inscriptions;
+    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL, targetEntity = Inscription.class)
+    private List<Inscription> inscriptions;
 
 
 }

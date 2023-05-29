@@ -16,7 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
-public class InscriptionAnnuelle {
+public class Inscription {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,24 +26,9 @@ public class InscriptionAnnuelle {
 
 	private int etat;
 
-	private String type;
-
-	private int rang;
-
-	private String validation;
-
-	private String mention;
-
-	private String plusInfos;
-
 	/**Permet de stocker les notes des matières*/
-	@OneToMany(mappedBy = "inscriptionAnnuelle", cascade = CascadeType.ALL, targetEntity = InscriptionMatiere.class)
-	private Set<InscriptionMatiere> inscriptionMatieres;
-
-	
-	/**Permet de stocker les notes des matières*/
-	@OneToMany(mappedBy = "inscriptionAnnuelle", cascade = CascadeType.ALL, targetEntity = InscriptionModule.class)
-	private Set<InscriptionModule> inscriptionModules;
+	@OneToMany(mappedBy = "inscription", cascade = CascadeType.ALL, targetEntity = Absence.class)
+	private Set<Absence> absences;
 
 	@ManyToOne
 	@JoinColumn(name = "idNiveau")
