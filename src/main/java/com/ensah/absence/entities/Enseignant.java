@@ -1,13 +1,13 @@
 package com.ensah.absence.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.util.Set;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "idEnseighant")
@@ -17,5 +17,9 @@ public class Enseignant extends Utilisateur {
 
 	
 	private String specialite;
+	@OneToMany(mappedBy = "enseignant" ,  cascade = CascadeType.ALL, targetEntity = Coordination.class)
+	private Set<Coordination> coordinations;
+	@OneToMany(mappedBy = "enseignant" ,  cascade = CascadeType.ALL, targetEntity = Absence.class)
+	private Set<Absence> absence;
 
 }

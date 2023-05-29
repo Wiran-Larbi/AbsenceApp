@@ -30,10 +30,13 @@ public class Filiere {
 
 	@OneToMany(mappedBy = "filiere" ,  cascade = CascadeType.ALL, targetEntity = Niveau.class)
 	private Set<Niveau> niveaux;
+	@OneToMany(mappedBy = "filiere" ,  cascade = CascadeType.ALL, targetEntity = Coordination.class)
+	private Set<Coordination> coordinations;
 
 
 
 
-	
-	
+
+
+
 }
