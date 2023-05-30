@@ -22,9 +22,6 @@ public class Role {
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL , targetEntity = Compte.class)
 	private Set<Compte> comptes;
 
-	public String getNomRole() {
-		return nomRole;
-	}
 
 
 	

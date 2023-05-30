@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,13 +16,15 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
+
 public class TypeSeance {
     @Id
     @GeneratedValue
-    private Long idTypeSeance;
+    private int idTypeSeance;
     private String intitule;
     private String alias;
 
     @ManyToMany(mappedBy = "typeSeances", cascade = CascadeType.ALL, targetEntity = Absence.class)
-    private Set<Absence> absenceSet;
+    private List<Absence> absenceSet=new ArrayList<>();
+
 }

@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
 import java.util.Set;
 
 @Entity
@@ -15,32 +14,24 @@ import java.util.Set;
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(generator = "increment_id_utilisateur")
-    @GenericGenerator(name = "increment_id_utilisateur", strategy = "increment")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idUtilisateur;
 
-    @Column(name = "nom")
+
     private String nom;
 
-    @Column(name = "prenom")
+
     private String prenom;
 
-    @Column(name = "cin" ,unique = true, nullable = true)
+    @Column(unique = true)
     private String cin;
 
-    @Column(unique = true, nullable = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = true)
+
     private String telephone;
 
-    /*
-    @Column(nullable = true)
-    private String nomArabe;
-
-    @Column(nullable = true)
-    private String prenomArabe;
-    */
 
     @JsonIgnore
     private String photo;

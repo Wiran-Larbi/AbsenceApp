@@ -2,9 +2,14 @@ package com.ensah.absence.entities;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @Entity
+@Data@AllArgsConstructor@NoArgsConstructor@ToString
 public class Element {
 
 	@Id
@@ -20,48 +25,7 @@ public class Element {
 	@ManyToOne
 	@JoinColumn(name="idModule")
 	private Module module;
-	
-	
 
-	public Long getIdMatiere() {
-		return idMatiere;
-	}
-
-	public void setIdMatiere(Long idMatiere) {
-		this.idMatiere = idMatiere;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public Module getModule() {
-		return module;
-	}
-
-	public void setModule(Module module) {
-		this.module = module;
-	}
-
-	public double getCurrentCoefficient() {
-		return currentCoefficient;
-	}
-
-	public void setCurrentCoefficient(double currentCoefficient) {
-		this.currentCoefficient = currentCoefficient;
-	}
 	
 	
 

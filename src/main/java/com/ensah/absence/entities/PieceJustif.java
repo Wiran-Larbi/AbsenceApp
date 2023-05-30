@@ -24,5 +24,5 @@ public class PieceJustif {
     private Date dateLivraison;
     private String source;
     @ManyToMany(mappedBy = "pieceJustifs", cascade = CascadeType.ALL, targetEntity = Absence.class)
-    private Set<Absence> absenceSet;
+    private Set<Absence> absenceSetJustif;
 }
