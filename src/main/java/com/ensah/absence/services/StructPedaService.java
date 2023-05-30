@@ -4,6 +4,6 @@ import com.ensah.absence.entities.Filiere;
 
 import java.util.List;
 
-public interface FiliereService {
+public interface StructPedaService {
     List<Filiere> getAllFiliere();
 }
