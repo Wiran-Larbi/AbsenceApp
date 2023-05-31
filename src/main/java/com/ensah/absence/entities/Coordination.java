@@ -23,5 +23,6 @@ public class Coordination {
     private Filiere filiere;
     @ManyToOne
     private Enseignant enseignant;
+
 }
 

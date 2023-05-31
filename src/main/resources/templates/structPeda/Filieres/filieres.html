@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="structPeda/Filieres/template.html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+</head>
+<body layout:fragment="content" class="m-4">
+<div>
+    <h1 th:text="${param.filSearch}"></h1>
+    <div>
+        
+        <div th:if="${s}" class="mt-14" >
+            <h1 class="mb-4 text-4xl font-extrabold leading-none text-center tracking-tight text-gray-900 md:text-5xl lg:text-6xl" th:text="${filiere.titreFiliere}">Hello</h1>
+            <dl class="flex flex-col justify-center text-center text-gray-900 divide-y divide-gray-200  ">
+                <div class="flex flex-col py-3">
+                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Alias</dt>
+                    <dd class="text-lg font-semibold" th:text="${filiere.codeFiliere}"></dd>
+                </div>
+                <div class="flex flex-col pb-3">
+                    <dt class="mb-1 text-gray-500 md:text-lg "> année d’accréditation - année de fin d’accréditation</dt>
+                    <dd th:text="${filiere.anneeaccreditation+' - '+filiere.anneeFinaccreditation}" class="text-lg  font-semibold"></dd>
+                </div>
+                <div class="flex flex-col pt-3">
+                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Les niveaux attachés</dt>
+                    <dd class="text-lg font-semibold" th:each="f:${filiere.niveaux}">
+                        <p th:text="${f.alias}"></p>
+                    </dd>
+                </div>
+                <div class="flex flex-col pt-3">
+                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Les niveaux attachés</dt>
+                    <dd class="text-lg font-semibold" th:each="f:${filiere.coordinations}">
+                        <p th:text="${f.}"></p>
+                    </dd>
+                </div>
+            </dl>
+            <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                Learn more
+                <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+        </div>
+        <div th:unless="${s}" class="mt-14" >
+            <h1 class="mb-4 text-4xl font-extrabold leading-none text-center tracking-tight text-gray-900 md:text-5xl lg:text-6xl" >Hello administrateur </h1>
+            <p class="mb-6 text-lg font-normal text-center text-gray-500 lg:text-xl sm:px-16 xl:px-48">you can search the filiere in the navbar.</p>
+            <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                Learn more
+                <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</body>
+</html>
