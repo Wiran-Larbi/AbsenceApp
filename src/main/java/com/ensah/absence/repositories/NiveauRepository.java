@@ -9,4 +9,5 @@ public interface NiveauRepository extends JpaRepository<Niveau,Long> {
     List<Niveau> findAllByIdNiveauIn(List<Long> Ids);
     Niveau findAllByIdNiveau(Long id);
     List<Niveau> findAllByFiliereIdFiliere(Long id);
+    Niveau findNiveauByIdNiveau(Long s);
 }

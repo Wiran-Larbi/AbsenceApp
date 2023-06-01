@@ -13,7 +13,7 @@ import java.util.Set;
 @Entity
 @Data
 @AllArgsConstructor
-@ToString
+
 @NoArgsConstructor
 public class Filiere {
 	
@@ -63,7 +63,16 @@ public class Filiere {
 	public int hashCode() {
 		return 31;
 	}
-
+	@Override
+	public String toString() {
+		return "Filiere{" +
+				"idFiliere=" + idFiliere +
+				", titreFiliere='" + titreFiliere + '\'' +
+				", codeFiliere='" + codeFiliere + '\'' +
+				", anneeaccreditation=" + anneeaccreditation +
+				", anneeFinaccreditation=" + anneeFinaccreditation +
+				'}';
+	}
 
 
 

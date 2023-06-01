@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="structPeda/Filieres/template.html">
+      layout:decorate="structPeda/template.html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,7 +9,7 @@
 </head>
 <body layout:fragment="content" class="m-4">
 <div>
-    <h1 th:text="${param.filSearch}"></h1>
+    
     <div>
         
         <div th:if="${s}" class="mt-14" >
@@ -30,9 +30,9 @@
                     </dd>
                 </div>
                 <div class="flex flex-col pt-3">
-                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Les niveaux attachés</dt>
+                    <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Les coordinations</dt>
                     <dd class="text-lg font-semibold" th:each="f:${filiere.coordinations}">
-                        <p th:text="${f.}"></p>
+                        <p th:text="${f.dateDebut+' - '+f.dateFin}"></p>
                     </dd>
                 </div>
             </dl>

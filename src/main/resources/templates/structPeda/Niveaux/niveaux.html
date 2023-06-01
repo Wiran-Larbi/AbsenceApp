@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="structPeda/template.html">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body layout:fragment="content" class="m-4">
+
+
+<div th:if="${s}">
+  <div  class="flex flex-col mt-8">
+  <h1 class="mb-4 text-4xl font-extrabold leading-none text-center tracking-tight text-gray-900 md:text-5xl lg:text-6xl" th:text="${niveau.titre}">Hello</h1>
+  <dl class="flex flex-col justify-center text-center text-gray-900 divide-y divide-gray-200  ">
+    <div class="flex flex-col py-3">
+      <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Alias</dt>
+      <dd class="text-lg font-semibold" th:text="${niveau.alias}"></dd>
+    </div>
+    <div class="flex flex-col pt-3">
+      <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Les Modules</dt>
+    </div>
+  </dl>
+  <a th:href="@{filieres(filSearch=${niveau.filiere.codeFiliere})}" th:text="${niveau.filiere.codeFiliere}" class="max-w-xs py-3 w-[90px] text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+    <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+    </svg>
+  </a>
+  </div>
+  <div class="flex flex-wrap mt-0 items-center justify-center ">
+<div th:each="m:${niveau.modules}" class="min-w-[225px] min-h-[220px] text-center m-10 justify-between p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <a href="#">
+    <h5 th:text="${m.titre}" class="text-center mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
+  </a>
+  <p th:text="${m.code}" class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p>
+  <a th:href="@{modules(modSearch=${m.getIdModule()})}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    Voir plus
+    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+  </a>
+</div>
+  </div>
+</div>
+<div th:unless="${s}"> <h1 class="m-20">rak generaaal</h1> </div>
+
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

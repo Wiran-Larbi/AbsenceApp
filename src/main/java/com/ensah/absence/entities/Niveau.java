@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
-@ToString
+
 @NoArgsConstructor
 public class Niveau {
 
@@ -44,5 +44,13 @@ public class Niveau {
 	@Override
 	public int hashCode() {
 		return 31;
+	}
+	@Override
+	public String toString() {
+		return "Niveau{" +
+				"idNiveau=" + idNiveau +
+				", alias='" + alias + '\'' +
+				", titre='" + titre + '\'' +
+				'}';
 	}
 }

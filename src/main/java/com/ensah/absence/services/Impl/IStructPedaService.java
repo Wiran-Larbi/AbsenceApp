@@ -2,8 +2,10 @@ package com.ensah.absence.services.Impl;
 import com.ensah.absence.entities.Coordination;
 import com.ensah.absence.entities.Filiere;
 import com.ensah.absence.entities.Niveau;
+import com.ensah.absence.entities.Module;
 import com.ensah.absence.repositories.CoordinationRepository;
 import com.ensah.absence.repositories.FiliereRepository;
+import com.ensah.absence.repositories.ModuleRepository;
 import com.ensah.absence.repositories.NiveauRepository;
 import com.ensah.absence.services.StructPedaService;
 import jakarta.transaction.Transactional;
@@ -21,9 +23,20 @@ public class IStructPedaService implements StructPedaService {
     NiveauRepository niveauRepository;
     FiliereRepository filiereRepository;
     CoordinationRepository coordinationRepository;
+    ModuleRepository moduleRepository;
     @Override
     public Filiere getFiliereByCode(String s ){
         return filiereRepository.findByCodeFiliere(s);
+    }
+
+    @Override
+    public Filiere getFiliereById(Long id) {
+        return filiereRepository.findByIdFiliere(id);
+    }
+
+    @Override
+    public List<Niveau> getAllNiveaux() {
+        return niveauRepository.findAll();
     }
 
     @Override
@@ -60,6 +73,26 @@ public class IStructPedaService implements StructPedaService {
     @Override
     public void supprimerCoordination(Long id) {
         coordinationRepository.deleteById(id);
+    }
+
+    @Override
+    public Niveau getNiveauById(Long s) {
+        return niveauRepository.findNiveauByIdNiveau(s);
+    }
+
+    @Override
+    public Module getModuleById(Long id) {
+        return moduleRepository.findAllByIdModule(id);
+    }
+
+    @Override
+    public List<Module> getModuleByIdNiveau(Long id) {
+        return moduleRepository.findAllByNiveauIdNiveau(id);
+    }
+
+    @Override
+    public List<Module> getAllModules() {
+        return moduleRepository.findAll();
     }
 
 

@@ -1,14 +1,12 @@
 package com.ensah.absence.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,12 +15,21 @@ public class Coordination {
     @Id
     @GeneratedValue
     private Long idCoordination;
-    private Date dateDebut;
-    private Date dateFin;
+
+    private LocalDate dateDebut;
+
+    private LocalDate dateFin;
     @ManyToOne
     private Filiere filiere;
     @ManyToOne
     private Enseignant enseignant;
 
+    public CharSequence getDateDebutStr() {
+        return getDateDebut().toString();
+    }
+
+    public CharSequence getDateFinStr() {
+        return getDateFin().toString();
+    }
 }
 
