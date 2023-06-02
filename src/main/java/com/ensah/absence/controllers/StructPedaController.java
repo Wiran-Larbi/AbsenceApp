@@ -1,8 +1,6 @@
 package com.ensah.absence.controllers;
 
-import com.ensah.absence.entities.Coordination;
-import com.ensah.absence.entities.Filiere;
-import com.ensah.absence.entities.Niveau;
+import com.ensah.absence.entities.*;
 import com.ensah.absence.entities.Module;
 import com.ensah.absence.repositories.FiliereRepository;
 import com.ensah.absence.services.StructPedaService;
@@ -28,16 +26,18 @@ public class StructPedaController {
     }
 
     @GetMapping("/filieres")
-    public String filieres(Model model, @RequestParam(name="filSearch",defaultValue = "") String s){
-
-        if(!Objects.equals(s, "")){
-            Filiere filiere=structPedaService.getFiliereByCode(s);
+    public String filieres(Model model, @RequestParam(name="filSearch",required=false) Long id){
+        if(id!=null){
+            Filiere filiere=structPedaService.getFiliereById(id);
+            if(filiere!=null){
             model.addAttribute("filiere",filiere);
-            model.addAttribute("s",true);
-            return "structPeda/Filieres/filieres";
+            model.addAttribute("s",true);}
+            else{
+                model.addAttribute("s",false);
+            }
+        }else{
+            model.addAttribute("s",false);
         }
-
-        model.addAttribute("s",false);
         return "structPeda/Filieres/filieres";
     }
 
@@ -46,10 +46,24 @@ public class StructPedaController {
         structPedaService.supprimerFiliere(id);
         return "structPeda/Filieres/filieres";
     }
+    @GetMapping("/niveaux/delete")
+    public String deleteNiveau(Model model,@RequestParam("idNiveau")Long id){
+        structPedaService.supprimerNiveau(id);
+        return "structPeda/Niveaux/niveaux";
+    }
+    @GetMapping("/modules/delete")
+    public String deleteModule(Model model,@RequestParam("idModule")Long id){
+        structPedaService.supprimerModule(id);
+        return "structPeda/Niveaux/modules";
+    }
+    @GetMapping("/elements/delete")
+    public String deleteElement(Model model,@RequestParam("idElement")Long id){
+        structPedaService.supprimerElement(id);
+        return "structPeda/Niveaux/elements";
+    }
     @GetMapping("/filieres/addFiliere")
     public String addFiliere(Model model){
         model.addAttribute("filiere",new Filiere());
-
         return "structPeda/Filieres/addFiliere";
     }
     @PostMapping("/saveFiliere")
@@ -68,7 +82,7 @@ public class StructPedaController {
             filiere.addCoordinations(coordinations);
             structPedaService.ajouterFiliere(filiere);
         }
-        return "redirect:/structPeda/Filieres/filieres?filSearch="+filiere.getCodeFiliere();
+        return "redirect:/structPeda/Filieres/filieres?filSearch="+filiere.getIdFiliere();
     }
 
     /////////////////////////////////////////////////////////
@@ -99,27 +113,51 @@ public class StructPedaController {
     ////////////////////////////////Niveau////////////
     ////////////////////////////////////////////////////////
     @GetMapping("/niveaux")
-    public String niveaux(Model model,@RequestParam(name="nivSearch",defaultValue = "")Long s){
-        if(!Objects.equals(s.toString(), "")){
-            Niveau niveau=structPedaService.getNiveauById(s);
-            model.addAttribute("niveau",niveau);
-            model.addAttribute("s",true);
-            return "structPeda/Niveaux/niveaux";
+    public String niveaux(Model model,@RequestParam(name="nivSearch",required = false)Long id){
+        if(id!=null){
+            Niveau niveau=structPedaService.getNiveauById(id);
+            if(niveau!=null){
+                model.addAttribute("niveau",niveau);
+                model.addAttribute("s",true);
+            }else{
+                model.addAttribute("s",false);
+            }
+        }else{
+            model.addAttribute("s",false);
         }
-
-        model.addAttribute("s",false);
         return "structPeda/Niveaux/niveaux";
     }
     @GetMapping("modules")
-    public String  modules(Model model,@RequestParam(name="modSearch",defaultValue = "")Long id){
-        if(!Objects.equals("",id.toString())){
-            model.addAttribute("module",structPedaService.getModuleById(id));
-            model.addAttribute("s",true);
-            return "structPeda/Niveaux/modules";
+    public String  modules(Model model,@RequestParam(name="modSearch",required = false)Long id){
+        if(id!=null){
+            Module module=structPedaService.getModuleById(id);
+            if(module!=null){
+                model.addAttribute("module",structPedaService.getModuleById(id));
+                model.addAttribute("s",true);
+            }else{
+                model.addAttribute("s",false);
+            }
+        }else{
+            model.addAttribute("s",false);
         }
-        model.addAttribute("s",false);
         return "structPeda/Niveaux/modules";
     }
+    @GetMapping("elements")
+    public String elements(Model model, @RequestParam(name = "eleSearch", required = false) Long id) {
+        if (id != null) {
+            Element element = structPedaService.getElementById(id);
+            if (element != null) {
+                model.addAttribute("element", element);
+                model.addAttribute("s", true);
+            } else {
+                model.addAttribute("s", false);
+            }
+        } else {
+            model.addAttribute("s", false);
+        }
+        return "structPeda/Niveaux/elements";
+    }
+
     @ModelAttribute("getFilieres")
     public List<Filiere> getFilieres() {
         return structPedaService.getAllFiliere();
@@ -129,8 +167,13 @@ public class StructPedaController {
         return structPedaService.getAllCoordinations();
     }
     @ModelAttribute("getNiveaux")
-    public List<Niveau> getNiveaux() {
-        return structPedaService.getAllNiveaux();
+    public List<Niveau> getNiveaux(@RequestParam(name = "filSearch", required = false) Long id) {
+        if (id != null) {
+            return structPedaService.getNiveauxByIdFiliere(id);
+        } else {
+            return structPedaService.getAllNiveaux();
+        }
+
     }
     @ModelAttribute("getModules")
     public List<Module> getModules(@RequestParam(name = "nivSearch", required = false) Long id) {
@@ -138,6 +181,14 @@ public class StructPedaController {
             return structPedaService.getModuleByIdNiveau(id);
         } else {
             return structPedaService.getAllModules();
+        }
+    }
+    @ModelAttribute("getElements")
+    public List<Element> getElement(@RequestParam(name = "modSearch", required = false) Long id) {
+        if (id != null) {
+            return structPedaService.getElementByIdModule(id);
+        } else {
+            return structPedaService.getAllElements();
         }
     }
 

@@ -22,15 +22,15 @@
       <div class="hidden md:block w-full md:w-auto" id="mobile-menu">
         <ul class="flex-col md:flex-row flex md:space-x-8 mt-4 md:mt-0 md:text-sm md:font-medium">
           <li>
-            <a th:href="@{filieres}" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Home</a>
+            <a th:href="@{filieres}" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent cursor-pointer md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0">Home</a>
           </li>
           <li>
-            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Filieres<svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
+            <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent cursor-pointer md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Filieres<svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
             <!-- Dropdown menu -->
             <div id="dropdownNavbar" class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44">
               <ul th:each="f:${getFilieres}" class="py-1" aria-labelledby="dropdownLargeButton">
                 <li>
-                  <a th:href="@{filieres(filSearch=${f.codeFiliere})}" th:text="${f.titreFiliere}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"></a>
+                  <a th:href="@{filieres(filSearch=${f.idFiliere})}" th:text="${f.titreFiliere}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"></a>
                 </li>
               </ul>
               <div class="py-1">
@@ -39,7 +39,7 @@
             </div>
           </li>
           <li>
-            <button id="dropdownNavbarLink3" data-dropdown-toggle="dropdownNavbar3" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Niveaux
+            <button id="dropdownNavbarLink3" data-dropdown-toggle="dropdownNavbar3" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 cursor-pointer md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Niveaux
               <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
               </svg>
@@ -67,7 +67,7 @@
             <div id="dropdownNavbar4" class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44 overflow-y-auto max-h-60">
               <ul th:each="m:${getModules}" class="py-1" aria-labelledby="dropdownLargeButton">
                 <li>
-                  <a th:href="@{moudles(modSearch=${m.idModule})}" th:text="${m.code}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"></a>
+                  <a th:href="@{modules(modSearch=${m.idModule})}" th:text="${m.code}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"></a>
                 </li>
               </ul>
               <div class="py-1">
@@ -75,6 +75,25 @@
               </div>
             </div>
           </li>
+          <li>
+            <button id="dropdownNavbarLink5" data-dropdown-toggle="dropdownNavbar5" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Elements
+              <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <!-- Dropdown menu -->
+            <div id="dropdownNavbar5" class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44 overflow-y-auto max-h-60">
+              <ul th:each="e:${getElements}" class="py-1" aria-labelledby="dropdownLargeButton">
+                <li>
+                  <a th:href="@{elements(eleSearch=${e.idElement})}" th:text="${e.code}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"></a>
+                </li>
+              </ul>
+              <div class="py-1">
+                <a th:href="@{elements/addElement}" class="text-sm bg-blue-300 hover:bg-gray-100 text-gray-700 block px-4 py-2">Ajouter Element</a>
+              </div>
+            </div>
+          </li>
+          
           <li>
             <button id="dropdownNavbarLink2" data-dropdown-toggle="dropdownNavbar2" class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto">Coordinations<svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
             <!-- Dropdown menu -->

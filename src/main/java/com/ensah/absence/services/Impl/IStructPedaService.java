@@ -1,12 +1,7 @@
 package com.ensah.absence.services.Impl;
-import com.ensah.absence.entities.Coordination;
-import com.ensah.absence.entities.Filiere;
-import com.ensah.absence.entities.Niveau;
+import com.ensah.absence.entities.*;
 import com.ensah.absence.entities.Module;
-import com.ensah.absence.repositories.CoordinationRepository;
-import com.ensah.absence.repositories.FiliereRepository;
-import com.ensah.absence.repositories.ModuleRepository;
-import com.ensah.absence.repositories.NiveauRepository;
+import com.ensah.absence.repositories.*;
 import com.ensah.absence.services.StructPedaService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -24,6 +19,7 @@ public class IStructPedaService implements StructPedaService {
     FiliereRepository filiereRepository;
     CoordinationRepository coordinationRepository;
     ModuleRepository moduleRepository;
+    ElementsRepository elementsRepository;
     @Override
     public Filiere getFiliereByCode(String s ){
         return filiereRepository.findByCodeFiliere(s);
@@ -81,6 +77,11 @@ public class IStructPedaService implements StructPedaService {
     }
 
     @Override
+    public List<Niveau> getNiveauxByIdFiliere(Long id) {
+        return niveauRepository.findAllByFiliereIdFiliere(id);
+    }
+
+    @Override
     public Module getModuleById(Long id) {
         return moduleRepository.findAllByIdModule(id);
     }
@@ -93,6 +94,21 @@ public class IStructPedaService implements StructPedaService {
     @Override
     public List<Module> getAllModules() {
         return moduleRepository.findAll();
+    }
+
+    @Override
+    public Element getElementById(Long id) {
+        return elementsRepository.findElementByIdElement(id);
+    }
+
+    @Override
+    public List<Element> getElementByIdModule(Long id) {
+        return elementsRepository.findAllByModuleIdModule(id);
+    }
+
+    @Override
+    public List<Element> getAllElements() {
+        return elementsRepository.findAll();
     }
 
 
@@ -108,6 +124,32 @@ public class IStructPedaService implements StructPedaService {
     public void supprimerFiliere(Long id){
         filiereRepository.deleteById(id);
     }
+
+    @Override
+    public void supprimerNiveau(Long id) {
+        niveauRepository.deleteById(id);
+    }
+
+    @Override
+    public void supprimerModule(Long id) {
+         moduleRepository.deleteById(id);
+    }
+
+    @Override
+    public void supprimerElement(Long id) {
+        elementsRepository.deleteById(id);
+    }
+
+    @Override
+    public void ajouterModule(Module module) {
+           moduleRepository.save(module);
+    }
+
+    @Override
+    public void ajouterElement(Element element) {
+           elementsRepository.save(element);
+    }
+
     @Override
     public void ajouterFiliere(Filiere filiere){
         filiereRepository.save(filiere);
