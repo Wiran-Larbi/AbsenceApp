@@ -11,11 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AbsenceController  {
     @GetMapping("/")
     public String home(){
-        return "redirect:/test";
+        return "redirect:/structPeda/filieres";
     }
-    @GetMapping("/test")
-    public String test(Model model){
-        model.addAttribute("anouar",158189);
-        return "test";
-    }
+
 }

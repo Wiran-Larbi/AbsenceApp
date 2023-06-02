@@ -14,7 +14,7 @@ public class Element {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idMatiere;
+	private Long idElement;
 
 	private String nom;
 

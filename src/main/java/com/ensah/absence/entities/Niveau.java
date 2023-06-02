@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
-@ToString
+
 @NoArgsConstructor
 public class Niveau {
 
@@ -33,9 +33,24 @@ public class Niveau {
 	@ManyToOne
 	@JoinColumn(name="idFiliere")
 	private Filiere filiere;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Niveau niveau = (Niveau) o;
+		return idNiveau != null && idNiveau.equals(niveau.idNiveau);
+	}
 
-
-
-	
-	
+	@Override
+	public int hashCode() {
+		return 31;
+	}
+	@Override
+	public String toString() {
+		return "Niveau{" +
+				"idNiveau=" + idNiveau +
+				", alias='" + alias + '\'' +
+				", titre='" + titre + '\'' +
+				'}';
+	}
 }

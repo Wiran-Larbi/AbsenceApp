@@ -1,0 +1,7 @@
+{
+  "name": "AbsenceApp",
+  "version": "1.0.0",
+  "dependencies": {
+    "tw-elements": "^1.0.0-beta2"
+  }
+}
